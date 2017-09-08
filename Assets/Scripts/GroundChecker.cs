@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroundChecker : MonoBehaviour{
 
-	// Use this for initialization
+	// Use this for initialization.
 	void Start(){
     _player = gameObject.GetComponentInParent<Player>();
 	}
@@ -24,5 +24,8 @@ public class GroundChecker : MonoBehaviour{
     _player.SetGrounded(true);
   }
 
+
+  // Attributes.
   private Player _player;
+
 }
