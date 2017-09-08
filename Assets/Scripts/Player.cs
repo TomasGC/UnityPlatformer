@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     _speed = 50f;
     _jump = 200;
     _speedMax = 3f;
-    _playerMaxHP = 100;
+    _playerMaxHP = 5;
     _rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
     _animator = gameObject.GetComponent<Animator>();
     _playerHP = _playerMaxHP;
@@ -25,6 +25,7 @@ public class Player : MonoBehaviour {
     SpeedLimitation();
     TurnOver();
     Jump();
+    DealWithLife();
 	}
 
   // Update every fixed framerate frame.
@@ -108,6 +109,16 @@ public class Player : MonoBehaviour {
     }
   }
 
+  // Take care of the player's HP.
+  void DealWithLife(){
+    if(_playerHP > _playerMaxHP){
+      _playerHP = _playerMaxHP;
+    }
+
+    if(_playerHP <= 0){
+      Die();
+    }
+  }
   // For now, when you die, you automatically restart.
   void Die(){
     SceneManager.LoadScene(0);
@@ -116,6 +127,21 @@ public class Player : MonoBehaviour {
   // To set if the player is grounded or not.
   public void SetGrounded(bool grounded){
     _grounded = grounded;
+  }
+
+  // To get the current HPs of the player.
+  public int GetHP(){
+    return _playerHP;
+  }
+
+  // To set the current HPs to a certain value.
+  public void SetHP(int playerHP){
+    _playerHP = playerHP;
+  }
+
+  // To decrease the current HPs by 1 heart.
+  public void DecreaseHP(){
+    --_playerHP;
   }
 
 
@@ -127,8 +153,7 @@ public class Player : MonoBehaviour {
   private bool _secondJump;
   private Rigidbody2D _rigidBody2D;
   private Animator _animator;
-
-  public int _playerHP;
-  public int _playerMaxHP;
+  private int _playerHP;
+  private int _playerMaxHP;
 
 }
