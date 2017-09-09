@@ -10,9 +10,9 @@ public class Player : MonoBehaviour {
     _speed = 50f;
     _jump = 200;
     _speedMax = 3f;
-    _playerMaxHP = 5;
     _rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
     _animator = gameObject.GetComponent<Animator>();
+    _playerMaxHP = 5;
     _playerHP = _playerMaxHP;
 	}
 	
@@ -91,16 +91,14 @@ public class Player : MonoBehaviour {
 
   // To allow the player to jump.
   void Jump(){
-    if (Input.GetButtonDown("Jump"))
-    {
-      if (_grounded)
-      {
+    // if(Input.GetKey("up") || Input.GetKey("z")) can also work
+    // but we can configure the entries of Jump in the unity settings, it's easier.
+    if(Input.GetButtonDown("Jump")){
+      if(_grounded){
         _rigidBody2D.AddForce(Vector2.up * _jump);
         _secondJump = true;
-      } else
-      {
-        if (_secondJump)
-        {
+      } else{
+        if(_secondJump){
           _rigidBody2D.velocity.Set(_rigidBody2D.velocity.x, 0);
           _rigidBody2D.AddForce(Vector2.up * _jump);
           _secondJump = false;
@@ -115,13 +113,14 @@ public class Player : MonoBehaviour {
       _playerHP = _playerMaxHP;
     }
 
-    if(_playerHP <= 0){
-      Die();
-    }
+    CheckDeath();
   }
-  // For now, when you die, you automatically restart.
-  void Die(){
-    SceneManager.LoadScene(0);
+
+  // Check if the player has to die (Restart the game).
+  void CheckDeath(){
+    if(_playerHP <= 0){
+      SceneManager.LoadScene(0);
+    }
   }
 
   // To set if the player is grounded or not.
@@ -139,9 +138,15 @@ public class Player : MonoBehaviour {
     _playerHP = playerHP;
   }
 
-  // To decrease the current HPs by 1 heart.
-  public void DecreaseHP(){
-    --_playerHP;
+  // To decrease the current HPs by hpLost heart.
+  public void Damages(int hpLost){
+    _playerHP -= hpLost;
+    gameObject.GetComponent<Animation>().Play("RedFlash");
+  }
+
+  // To increase the current HPs by hpWin heart.
+  public void Heal(int hpWin){
+    _playerHP += hpWin;
   }
 
 
