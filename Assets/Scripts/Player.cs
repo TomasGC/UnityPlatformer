@@ -30,20 +30,7 @@ public class Player : MonoBehaviour {
 
   // Update every fixed framerate frame.
   void FixedUpdate(){
-    EaseVelocity();
     Move();
-  }
-
-  // Fake friction to ease the X speed of our player.
-  void EaseVelocity(){
-    Vector3 easeVelocity = _rigidBody2D.velocity;
-    easeVelocity.x *= 0.75f;
-
-    if (_grounded)
-    {
-      _rigidBody2D.velocity = easeVelocity;
-    }
-
   }
 
   // Make the player moves.
