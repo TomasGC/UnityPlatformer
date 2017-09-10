@@ -14,7 +14,8 @@ public class Player : MonoBehaviour {
     _animator = gameObject.GetComponent<Animator>();
     _playerMaxHP = 5;
     _playerHP = _playerMaxHP;
-	}
+    _wallet = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
+  }
 	
 	// Update is called once per frame.
 	void Update(){
@@ -110,6 +111,14 @@ public class Player : MonoBehaviour {
     }
   }
 
+  // When the player get a coin, the wallet improves and the coin disappear.
+  void OnTriggerEnter2D(Collider2D collider2D){
+    if(collider2D.CompareTag("Coin")){
+      Destroy(collider2D.gameObject);
+      _wallet.IncreaseNbCoins(1);
+    }
+  }
+
   // To set if the player is grounded or not.
   public void SetGrounded(bool grounded){
     _grounded = grounded;
@@ -147,5 +156,6 @@ public class Player : MonoBehaviour {
   private Animator _animator;
   private int _playerHP;
   private int _playerMaxHP;
+  private GameMaster _wallet;
 
 }

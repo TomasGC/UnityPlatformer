@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Mob
+  - Coin
+  - GameMaster
   layers:
   - Default
   - TransparentFX
