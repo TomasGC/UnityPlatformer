@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114133463552791776}
   m_Layer: 0
   m_Name: Right
-  m_TagString: Mob
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 114348131649833406}
   m_Layer: 0
   m_Name: Left
-  m_TagString: Mob
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 95956525077682312}
   - component: {fileID: 111253902539297346}
   - component: {fileID: 114583357604302522}
+  - component: {fileID: 82101379979774612}
   m_Layer: 0
   m_Name: Shooter
   m_TagString: Mob
@@ -91,7 +92,7 @@ GameObject:
   - component: {fileID: 4783689357800536}
   m_Layer: 0
   m_Name: ShootPoints
-  m_TagString: Mob
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,7 +107,7 @@ GameObject:
   - component: {fileID: 4610585764667964}
   m_Layer: 0
   m_Name: AttackRangeTriggers
-  m_TagString: Mob
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +122,7 @@ GameObject:
   - component: {fileID: 4727861975653166}
   m_Layer: 0
   m_Name: Right
-  m_TagString: Mob
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,7 +137,7 @@ GameObject:
   - component: {fileID: 4742783896381378}
   m_Layer: 0
   m_Name: Left
-  m_TagString: Mob
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -333,6 +334,86 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5685425, y: 1.0162814}
   m_EdgeRadius: 0
+--- !u!82 &82101379979774612
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1192050385692216}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 89bb10e925cf5ca4c972d29044641bf9, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95956525077682312
 Animator:
   serializedVersion: 3
@@ -403,6 +484,9 @@ MonoBehaviour:
   _shootPointRight: {fileID: 4727861975653166}
   _shootPointLeft: {fileID: 4742783896381378}
   _coin: {fileID: 1935506615380838, guid: 89bcfe89a518f75468ef01253f1d1331, type: 2}
+  _hurtSound: {fileID: 8300000, guid: 6b4e6c333361ca34b92d49b1f98f3739, type: 3}
+  _attackSound: {fileID: 8300000, guid: 32228e074ccb8d64799b4033ec9a4516, type: 3}
+  _dieSound: {fileID: 8300000, guid: 89bb10e925cf5ca4c972d29044641bf9, type: 3}
 --- !u!212 &212466425869743070
 SpriteRenderer:
   m_ObjectHideFlags: 1

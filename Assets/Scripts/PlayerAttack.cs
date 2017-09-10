@@ -9,7 +9,7 @@ public class PlayerAttack : MonoBehaviour {
     _isAttacking = false;
     _timerAttack = 0f;
     _attackCoolDown = 0.3f;
-
+    _audioSource = GetComponent<AudioSource>();
   }
 
   // Update is called once per frame.
@@ -18,6 +18,8 @@ public class PlayerAttack : MonoBehaviour {
       _isAttacking = true;
       _timerAttack = _attackCoolDown;
       _attackTriggered.enabled = true;
+      _audioSource.clip = _attackSound;
+      _audioSource.Play();
     }
 
     if(_isAttacking){
@@ -41,7 +43,9 @@ public class PlayerAttack : MonoBehaviour {
   private bool _isAttacking;
   private float _timerAttack;
   private float _attackCoolDown;
-  public Collider2D _attackTriggered;
   private Animator _animator;
+  private AudioSource _audioSource;
 
+  public Collider2D _attackTriggered;
+  public AudioClip _attackSound;
 }

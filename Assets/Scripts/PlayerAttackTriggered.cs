@@ -8,13 +8,7 @@ public class PlayerAttackTriggered : MonoBehaviour {
 	void Start () {
     _damages = 20;
     _shooter = GameObject.FindGameObjectWithTag("Mob").GetComponent<Shooter>();
-
   }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
   // See if there is a collision with the mob and send a message to create damages to it.
   void OnTriggerEnter2D(Collider2D collider2D){
@@ -26,4 +20,5 @@ public class PlayerAttackTriggered : MonoBehaviour {
   // Attributes.
   private int _damages;
   private Shooter _shooter;
+
 }

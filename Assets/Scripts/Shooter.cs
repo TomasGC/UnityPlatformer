@@ -9,12 +9,12 @@ public class Shooter : MonoBehaviour {
     _shooterMaxHP = 60;
     _shooterHP = _shooterMaxHP;
     _activationRange = 8;
-    _shootInterval = 0.5f;
+    _shootInterval = 0.8f;
     _bulletSpeed = 7f;
     _bulletTimer = 0;
     _activated = false;
     _lookingRight = false;
-
+    _audioSource = GetComponent<AudioSource>();
   }
 	
 	// Update is called once per frame
@@ -58,6 +58,8 @@ public class Shooter : MonoBehaviour {
 
   // Attack the side where the target is.
   void AttackTheRightSide(Vector2 direction, Transform shootPoint){
+    _audioSource.clip = _attackSound;
+    _audioSource.Play();
     GameObject bulletClone;
     bulletClone = Instantiate(_bullet, shootPoint.transform.position, shootPoint.transform.rotation) as GameObject;
     bulletClone.GetComponent<Rigidbody2D>().velocity = direction * _bulletSpeed;
@@ -68,6 +70,10 @@ public class Shooter : MonoBehaviour {
   // Check if the shooter has to die (be destoyed).
   void CheckDeath(){
     if(_shooterHP <= 0){
+      _audioSource.clip = _dieSound;
+      _audioSource.Play();
+
+      //renderer.enabled = false;
       // To make the mob drops behind him.
       float offset = (_lookingRight) ? 0.5f : -0.5f;
       Vector3 dropPosition = transform.position;
@@ -96,8 +102,11 @@ public class Shooter : MonoBehaviour {
   }
 
   // To decrease the current HPs of the shooter by hpLost.
-  public void Damages(int hpLost)
-  {
+  public void Damages(int hpLost){
+    if(_audioSource){
+      _audioSource.clip = _hurtSound;
+      _audioSource.Play();
+    }
     _shooterHP -= hpLost;
     gameObject.GetComponent<Animation>().Play("RedFlash");
   }
@@ -112,11 +121,16 @@ public class Shooter : MonoBehaviour {
   private float _bulletTimer;
   private bool _activated;
   private bool _lookingRight;
+  private AudioSource _audioSource;
+
   public GameObject _bullet;
   public Transform _target;
   public Transform _shootPointRight;
   public Transform _shootPointLeft;
   private Animator _animator;
   public GameObject _coin;
+  public AudioClip _hurtSound;
+  public AudioClip _attackSound;
+  public AudioClip _dieSound;
 
 }

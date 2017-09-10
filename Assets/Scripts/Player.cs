@@ -15,6 +15,7 @@ public class Player : MonoBehaviour {
     _playerMaxHP = 5;
     _playerHP = _playerMaxHP;
     _wallet = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
+    _audioSource = GetComponent<AudioSource>();
   }
 	
 	// Update is called once per frame.
@@ -83,10 +84,13 @@ public class Player : MonoBehaviour {
     // but we can configure the entries of Jump in the unity settings, it's easier.
     if(Input.GetButtonDown("Jump")){
       if(_grounded){
+        _audioSource.clip = _jumpSound;
+        _audioSource.Play();
         _rigidBody2D.AddForce(Vector2.up * _jump);
         _secondJump = true;
       } else{
         if(_secondJump){
+          _audioSource.Play();
           _rigidBody2D.velocity.Set(_rigidBody2D.velocity.x, 0);
           _rigidBody2D.AddForce(Vector2.up * _jump);
           _secondJump = false;
@@ -107,6 +111,9 @@ public class Player : MonoBehaviour {
   // Check if the player has to die (Restart the game).
   void CheckDeath(){
     if(_playerHP <= 0){
+      _audioSource.clip = _dieSound;
+      _audioSource.Play();
+
       SceneManager.LoadScene(0);
     }
   }
@@ -114,6 +121,8 @@ public class Player : MonoBehaviour {
   // When the player get a coin, the wallet improves and the coin disappear.
   void OnTriggerEnter2D(Collider2D collider2D){
     if(collider2D.CompareTag("Coin")){
+      _audioSource.clip = _coinSound;
+      _audioSource.Play();
       Destroy(collider2D.gameObject);
       _wallet.IncreaseNbCoins(1);
     }
@@ -136,6 +145,8 @@ public class Player : MonoBehaviour {
 
   // To decrease the current HPs by hpLost heart.
   public void Damages(int hpLost){
+    _audioSource.clip = _hurtSound;
+    _audioSource.Play();
     _playerHP -= hpLost;
     gameObject.GetComponent<Animation>().Play("RedFlash");
   }
@@ -157,5 +168,11 @@ public class Player : MonoBehaviour {
   private int _playerHP;
   private int _playerMaxHP;
   private GameMaster _wallet;
+  private AudioSource _audioSource;
+
+  public AudioClip _hurtSound;
+  public AudioClip _jumpSound;
+  public AudioClip _dieSound;
+  public AudioClip _coinSound;
 
 }
