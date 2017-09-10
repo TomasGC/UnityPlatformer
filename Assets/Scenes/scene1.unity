@@ -148,6 +148,7 @@ MonoBehaviour:
   _target: {fileID: 1501502367}
   _shootPointRight: {fileID: 1811188559}
   _shootPointLeft: {fileID: 1469626098}
+  _coin: {fileID: 1935506615380838, guid: 89bcfe89a518f75468ef01253f1d1331, type: 2}
 --- !u!1 &62317505
 GameObject:
   m_ObjectHideFlags: 0
