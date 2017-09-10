@@ -68,6 +68,11 @@ public class Shooter : MonoBehaviour {
   // Check if the shooter has to die (be destoyed).
   void CheckDeath(){
     if(_shooterHP <= 0){
+      // To make the mob drops behind him.
+      float offset = (_lookingRight) ? 0.5f : -0.5f;
+      Vector3 dropPosition = transform.position;
+      dropPosition.x += offset;
+      Instantiate(_coin, dropPosition, Quaternion.identity);
       Destroy(gameObject);
     }
   }
@@ -112,5 +117,6 @@ public class Shooter : MonoBehaviour {
   public Transform _shootPointRight;
   public Transform _shootPointLeft;
   private Animator _animator;
+  public GameObject _coin;
 
 }
