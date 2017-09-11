@@ -971,6 +971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textCoins: {fileID: 62317507}
+  _textHighScoreCoins: {fileID: 1137177512}
 --- !u!4 &1026328084
 Transform:
   m_ObjectHideFlags: 0
