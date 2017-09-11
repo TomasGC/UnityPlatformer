@@ -8,8 +8,8 @@ public class Player : Character {
   // Use this for initialization.
 	void Start(){
     _speed = 50f;
-    _jump = 200;
-    _speedMax = 3f;
+    _jump = 300;
+    _speedMax = 5f;
     _rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
     _animator = gameObject.GetComponent<Animator>();
     _maxHP = 5;
