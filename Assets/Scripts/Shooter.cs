@@ -104,13 +104,13 @@ public class Shooter : Character {
   }
 
   // Attributes
-  private float _distance;
-  private float _activationRange;
-  private float _shootInterval;
-  private float _bulletSpeed;
-  private float _bulletTimer;
-  private bool _activated;
-  private bool _lookingRight;
+  float _distance;
+  float _activationRange;
+  float _shootInterval;
+  float _bulletSpeed;
+  float _bulletTimer;
+  bool _activated;
+  bool _lookingRight;
 
   public GameObject _bullet;
   public Transform _target;

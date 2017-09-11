@@ -73,6 +73,7 @@ public class Player : Character {
     // but we can configure the entries of Jump in the unity settings, it's easier.
     if(Input.GetButtonDown("Jump")){
       if(_grounded){
+        PlaySound(_jumpSound);
         _rigidBody2D.AddForce(Vector2.up * _jump);
         _secondJump = true;
       } else{
@@ -116,13 +117,14 @@ public class Player : Character {
   }
 
   // Attributes.
-  private float _speed;
-  private float _jump;
-  private float _speedMax;
-  private bool _grounded;
-  private bool _secondJump;
-  private Rigidbody2D _rigidBody2D;
-  private GameMaster _wallet;
+  float _speed;
+  float _jump;
+  float _speedMax;
+  bool _grounded;
+  bool _secondJump;
+  Rigidbody2D _rigidBody2D;
+  GameMaster _wallet;
+
   public AudioClip _jumpSound;
   public AudioClip _coinSound;
 

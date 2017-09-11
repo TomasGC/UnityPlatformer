@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour {
+// Character can't be instantiate, so it needs to be an abstract class.
+public abstract class Character : MonoBehaviour {
 
   // Play a sound given by parameter.
   protected void PlaySound(AudioClip audioClip){

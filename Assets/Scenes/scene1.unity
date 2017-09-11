@@ -698,14 +698,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225046bdc48397b44a17c6820e5deca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hurtSound: {fileID: 8300000, guid: 6b4e6c333361ca34b92d49b1f98f3739, type: 3}
+  _dieSound: {fileID: 8300000, guid: 89bb10e925cf5ca4c972d29044641bf9, type: 3}
   _bullet: {fileID: 1247916095554076, guid: e8db8f68879ae7a4992f1d541e80659c, type: 2}
   _target: {fileID: 1501502367}
   _shootPointRight: {fileID: 1413701754}
   _shootPointLeft: {fileID: 731327364}
   _coin: {fileID: 1935506615380838, guid: 89bcfe89a518f75468ef01253f1d1331, type: 2}
-  _hurtSound: {fileID: 8300000, guid: 6b4e6c333361ca34b92d49b1f98f3739, type: 3}
   _attackSound: {fileID: 8300000, guid: 32228e074ccb8d64799b4033ec9a4516, type: 3}
-  _dieSound: {fileID: 8300000, guid: 89bb10e925cf5ca4c972d29044641bf9, type: 3}
 --- !u!1 &731327363
 GameObject:
   m_ObjectHideFlags: 0
@@ -2464,7 +2464,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hurtSound: {fileID: 8300000, guid: 84ef6a355abd8ce45992275dbd12ff74, type: 3}
-  _attackSound: {fileID: 0}
   _dieSound: {fileID: 8300000, guid: aff4e4d7f7ddc6e4abab6eb98b05b1e6, type: 3}
   _jumpSound: {fileID: 8300000, guid: 0724bf229b6a7d540a84bfcde24ad752, type: 3}
   _coinSound: {fileID: 8300000, guid: c5fa169920157e647ba6f9c1bd810448, type: 3}
@@ -2525,7 +2524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackTriggered: {fileID: 1919699992}
-  _attackSound: {fileID: 8300000, guid: 1ce076a81780833409724cb431a36c2d, type: 3}
+  _attackSound: {fileID: 0}
 --- !u!111 &1501502372
 Animation:
   m_ObjectHideFlags: 0
