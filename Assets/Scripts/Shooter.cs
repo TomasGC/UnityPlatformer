@@ -70,8 +70,7 @@ public class Shooter : MonoBehaviour {
   // Check if the shooter has to die (be destoyed).
   void CheckDeath(){
     if(_shooterHP <= 0){
-      _audioSource.clip = _dieSound;
-      _audioSource.Play();
+      AudioSource.PlayClipAtPoint(_dieSound, transform.position);
 
       //renderer.enabled = false;
       // To make the mob drops behind him.
@@ -91,6 +90,9 @@ public class Shooter : MonoBehaviour {
     // While the bullet still is "alive" we continue the attack.
     if(_bulletTimer >= _shootInterval){
       Vector2 direction = _target.transform.position - transform.position;
+
+      // Offset, like this the shooter shoots on the player's body.
+      direction.y -= _target.GetComponent<SpriteRenderer>().bounds.size.y; 
       direction.Normalize();
  
       if(attackRightSide){

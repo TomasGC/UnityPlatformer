@@ -20,7 +20,9 @@ public class ShooterAttack : MonoBehaviour {
 
   void OnTriggerStay2D(Collider2D collider2D){
     if(collider2D.CompareTag("Player")){
-      _shooter.Attack(_isRight);
+      if(collider2D.GetComponent<Player>().GetHP() > 0){
+        _shooter.Attack(_isRight);
+      }
     }
   }
 

@@ -109,13 +109,19 @@ public class Player : MonoBehaviour {
   }
 
   // Check if the player has to die (Restart the game).
+  // (!_audioSource.isPlaying) is used to play only once the sound of death.
   void CheckDeath(){
-    if(_playerHP <= 0){
-      _audioSource.clip = _dieSound;
-      _audioSource.Play();
+    if((_playerHP <= 0) && (!_audioSource.isPlaying)){
+      _audioSource.PlayOneShot(_dieSound);
 
-      SceneManager.LoadScene(0);
+      // In order to delay the scene reload.
+      Invoke("ReloadScene", _dieSound.length);
     }
+  }
+
+  // Reload the scene.
+  void ReloadScene(){
+    SceneManager.LoadScene(0);
   }
 
   // When the player get a coin, the wallet improves and the coin disappear.
