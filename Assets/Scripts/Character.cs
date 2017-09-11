@@ -7,8 +7,7 @@ public abstract class Character : MonoBehaviour {
 
   // Play a sound given by parameter.
   protected void PlaySound(AudioClip audioClip){
-    _audioSource.clip = audioClip;
-    _audioSource.Play();
+    _audioSource.PlayOneShot(audioClip);
   }
 
   // Take care of the player's HP.

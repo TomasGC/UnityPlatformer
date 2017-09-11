@@ -2524,7 +2524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackTriggered: {fileID: 1919699992}
-  _attackSound: {fileID: 0}
+  _attackSound: {fileID: 8300000, guid: 1ce076a81780833409724cb431a36c2d, type: 3}
 --- !u!111 &1501502372
 Animation:
   m_ObjectHideFlags: 0

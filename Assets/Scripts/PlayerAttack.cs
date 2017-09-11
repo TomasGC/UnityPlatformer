@@ -18,8 +18,7 @@ public class PlayerAttack : MonoBehaviour {
       _isAttacking = true;
       _timerAttack = _attackCoolDown;
       _attackTriggered.enabled = true;
-      _audioSource.clip = _attackSound;
-      _audioSource.Play();
+      _audioSource.PlayOneShot(_attackSound);
     }
 
     if(_isAttacking){
