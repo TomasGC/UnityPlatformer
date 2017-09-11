@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour {
+public class Player : Character {
 
   // Use this for initialization.
 	void Start(){
@@ -12,8 +12,8 @@ public class Player : MonoBehaviour {
     _speedMax = 3f;
     _rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
     _animator = gameObject.GetComponent<Animator>();
-    _playerMaxHP = 5;
-    _playerHP = _playerMaxHP;
+    _maxHP = 5;
+    _currentHP = _maxHP;
     _wallet = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
     _audioSource = GetComponent<AudioSource>();
   }
@@ -45,8 +45,7 @@ public class Player : MonoBehaviour {
   }
 
   // The limitation of the player's speed.
-  void SpeedLimitation()
-  {
+  void SpeedLimitation(){
     if(_rigidBody2D.velocity.x > _speedMax){
       _rigidBody2D.velocity = new Vector2(_speedMax, _rigidBody2D.velocity.y);
 }
@@ -57,23 +56,13 @@ public class Player : MonoBehaviour {
 
   // To turn the player to the left or right depending the direction.
   void TurnOver(){
-    /*
-     * To try out again.
-    if(Mathf.Abs(Input.GetAxis("Horizontal")) > 0.1f){
-      Vector3 scale = transform.localScale;
-      scale.x *= -1;
-      transform.localScale = scale;
-    }
-    */
     // To turn the player to the left.
-    if (Input.GetAxis("Horizontal") < -0.1f)
-    {
+    if(Input.GetAxis("Horizontal") < -0.1f){
       transform.localScale = new Vector3(-1, 1, 1);
     }
 
     // To turn the player to the right.
-    if (Input.GetAxis("Horizontal") > 0.1f)
-    {
+    if(Input.GetAxis("Horizontal") > 0.1f){
       transform.localScale = new Vector3(1, 1, 1);
     }
   }
@@ -84,13 +73,11 @@ public class Player : MonoBehaviour {
     // but we can configure the entries of Jump in the unity settings, it's easier.
     if(Input.GetButtonDown("Jump")){
       if(_grounded){
-        _audioSource.clip = _jumpSound;
-        _audioSource.Play();
         _rigidBody2D.AddForce(Vector2.up * _jump);
         _secondJump = true;
       } else{
         if(_secondJump){
-          _audioSource.Play();
+          PlaySound(_jumpSound);
           _rigidBody2D.velocity.Set(_rigidBody2D.velocity.x, 0);
           _rigidBody2D.AddForce(Vector2.up * _jump);
           _secondJump = false;
@@ -99,28 +86,17 @@ public class Player : MonoBehaviour {
     }
   }
 
-  // Take care of the player's HP.
-  void DealWithLife(){
-    if(_playerHP > _playerMaxHP){
-      _playerHP = _playerMaxHP;
-    }
-
-    CheckDeath();
-  }
-
   // Check if the player has to die (Restart the game).
-  // (!_audioSource.isPlaying) is used to play only once the sound of death.
-  void CheckDeath(){
-    if((_playerHP <= 0) && (!_audioSource.isPlaying)){
+  protected override void CheckDeath(){
+    if((_currentHP <= 0) && (!_audioSource.isPlaying)){
       _audioSource.PlayOneShot(_dieSound);
 
       // In order to delay the scene reload.
-      Invoke("ReloadScene", _dieSound.length);
+      Invoke("Die", _dieSound.length);
     }
   }
 
-  // Reload the scene.
-  void ReloadScene(){
+  protected override void Die(){
     SceneManager.LoadScene(0);
   }
 
@@ -139,30 +115,6 @@ public class Player : MonoBehaviour {
     _grounded = grounded;
   }
 
-  // To get the current HPs of the player.
-  public int GetHP(){
-    return _playerHP;
-  }
-
-  // To set the current HPs to a certain value.
-  public void SetHP(int playerHP){
-    _playerHP = playerHP;
-  }
-
-  // To decrease the current HPs by hpLost heart.
-  public void Damages(int hpLost){
-    _audioSource.clip = _hurtSound;
-    _audioSource.Play();
-    _playerHP -= hpLost;
-    gameObject.GetComponent<Animation>().Play("RedFlash");
-  }
-
-  // To increase the current HPs by hpWin heart.
-  public void Heal(int hpWin){
-    _playerHP += hpWin;
-  }
-
-
   // Attributes.
   private float _speed;
   private float _jump;
@@ -170,15 +122,8 @@ public class Player : MonoBehaviour {
   private bool _grounded;
   private bool _secondJump;
   private Rigidbody2D _rigidBody2D;
-  private Animator _animator;
-  private int _playerHP;
-  private int _playerMaxHP;
   private GameMaster _wallet;
-  private AudioSource _audioSource;
-
-  public AudioClip _hurtSound;
   public AudioClip _jumpSound;
-  public AudioClip _dieSound;
   public AudioClip _coinSound;
 
 }
