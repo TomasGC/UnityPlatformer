@@ -353,6 +353,7 @@ MonoBehaviour:
   _dieSound: {fileID: 8300000, guid: aff4e4d7f7ddc6e4abab6eb98b05b1e6, type: 3}
   _jumpSound: {fileID: 8300000, guid: 0724bf229b6a7d540a84bfcde24ad752, type: 3}
   _coinSound: {fileID: 8300000, guid: c5fa169920157e647ba6f9c1bd810448, type: 3}
+  _heartSound: {fileID: 0}
 --- !u!114 &114981800637632914
 MonoBehaviour:
   m_ObjectHideFlags: 1

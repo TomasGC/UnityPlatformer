@@ -13,8 +13,6 @@ public class PlayerAttackTriggered : MonoBehaviour {
   void OnTriggerEnter2D(Collider2D collider2D){
     if(collider2D.isTrigger != true && collider2D.CompareTag("Mob")){
       collider2D.SendMessageUpwards("Damages", _damages);
-      //_shooter = GameObject.FindGameObjectWithTag("Mob").GetComponent<Shooter>();
-      //_shooter.Damages(_damages);
     }
   }
 

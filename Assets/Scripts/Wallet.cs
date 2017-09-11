@@ -13,7 +13,13 @@ public class Wallet : MonoBehaviour {
 	// Update is called once per frame.
 	void Update(){
     _textCoins.text = "Wallet: " + _nbCoins + " coins";
+    _textHighScoreCoins.text = "HighScore: " + PlayerPrefs.GetInt("Score") + "coins";
 	}
+
+  // Return the number of coins the player have.
+  public int GetNbCoins(){
+    return _nbCoins;
+  }
 
   // To increase the number of coins the player have by coinsWin.
   public void IncreaseNbCoins(int coinsWin){
@@ -29,4 +35,6 @@ public class Wallet : MonoBehaviour {
   int _nbCoins;
 
   public Text _textCoins;
+  public Text _textHighScoreCoins;
+
 }

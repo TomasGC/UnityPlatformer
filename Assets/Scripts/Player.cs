@@ -98,6 +98,10 @@ public class Player : Character {
   }
 
   protected override void Die(){
+    if(PlayerPrefs.GetInt("Score") < _wallet.GetNbCoins()){
+      PlayerPrefs.SetInt("Score", _wallet.GetNbCoins());
+    }
+    
     SceneManager.LoadScene(0);
   }
 
