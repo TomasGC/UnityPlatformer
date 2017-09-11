@@ -21,12 +21,10 @@ public abstract class Character : MonoBehaviour {
   }
 
   // Check if the character has to die, to be overriden.
-  protected virtual void CheckDeath(){
-  }
+  protected abstract void CheckDeath();
 
   // Die method, to be overriden.
-  protected virtual void Die(){
-  }
+  protected abstract void Die();
 
   // To get the current HPs of the character.
   public int GetHP(){
