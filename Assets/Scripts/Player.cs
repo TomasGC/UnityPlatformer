@@ -118,6 +118,11 @@ public class Player : Character {
       Destroy(collider2D.gameObject);
       Heal(Random.Range(1, 5));
     }
+
+    if(collider2D.CompareTag("OutOfScope")){
+      SetHP(0);
+      CheckDeath();
+    }
   }
 
   // To set if the player is grounded or not.
