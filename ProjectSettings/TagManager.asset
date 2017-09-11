@@ -5,8 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Coin
-  - GameMaster
   - Mob
+  - Audio
+  - Wallet
+  - Heart
   layers:
   - Default
   - TransparentFX

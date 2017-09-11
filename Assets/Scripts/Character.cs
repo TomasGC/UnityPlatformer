@@ -30,6 +30,10 @@ public abstract class Character : MonoBehaviour {
     return _currentHP;
   }
 
+  // To get the max HPs of the character.
+  public int GetMaxHP(){
+    return _maxHP;
+  }
   // To set the current HPs to a certain value.
   public void SetHP(int playerHP){
     _currentHP = playerHP;

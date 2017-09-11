@@ -5,19 +5,18 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
 
   // Use this for initialization.
-  void Start()
-  {
-    _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+  void Start(){
+    _damages = 1;
   }
 
   void OnTriggerEnter2D(Collider2D collider2D){
     if(collider2D.CompareTag("Player")){
-      _player.Damages(1);
+      collider2D.SendMessageUpwards("Damages", 1);
       Destroy(gameObject);
     }
   }
 
   // Attributes.
-  Player _player;
+  int _damages;
 
 }

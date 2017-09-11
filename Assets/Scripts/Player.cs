@@ -14,8 +14,8 @@ public class Player : Character {
     _animator = gameObject.GetComponent<Animator>();
     _maxHP = 5;
     _currentHP = _maxHP;
-    _wallet = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<GameMaster>();
-    _audioSource = GetComponent<AudioSource>();
+    _wallet = GameObject.FindGameObjectWithTag("Wallet").GetComponent<Wallet>();
+    _audioSource = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSource>();
   }
 	
 	// Update is called once per frame.
@@ -104,10 +104,15 @@ public class Player : Character {
   // When the player get a coin, the wallet improves and the coin disappear.
   void OnTriggerEnter2D(Collider2D collider2D){
     if(collider2D.CompareTag("Coin")){
-      _audioSource.clip = _coinSound;
-      _audioSource.Play();
+      PlaySound(_coinSound);
       Destroy(collider2D.gameObject);
-      _wallet.IncreaseNbCoins(1);
+      _wallet.IncreaseNbCoins(Random.Range(1, 10));
+    }
+
+    if(collider2D.CompareTag("Heart")){
+      PlaySound(_heartSound);
+      Destroy(collider2D.gameObject);
+      Heal(Random.Range(1, 5));
     }
   }
 
@@ -123,9 +128,10 @@ public class Player : Character {
   bool _grounded;
   bool _secondJump;
   Rigidbody2D _rigidBody2D;
-  GameMaster _wallet;
+  Wallet _wallet;
 
   public AudioClip _jumpSound;
   public AudioClip _coinSound;
+  public AudioClip _heartSound;
 
 }

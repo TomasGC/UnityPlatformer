@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Shooter : Character {
 
+  enum Loot { Coin, Heart };
+
+
 	// Use this for initialization
 	void Start(){
     _maxHP = 60;
@@ -14,7 +17,8 @@ public class Shooter : Character {
     _bulletTimer = 0;
     _activated = false;
     _lookingRight = false;
-    _audioSource = GetComponent<AudioSource>();
+    _audioSource = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSource>();
+    _target = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().transform;
   }
 	
 	// Update is called once per frame
@@ -74,12 +78,31 @@ public class Shooter : Character {
   }
   // When the shooter dies, he drop a coin and is destroyed.
   protected override void Die(){
-    // To make the mob drops behind him.
-    float offset = (_lookingRight) ? 0.5f : -0.5f;
+    Drop(Loot.Coin);
+    Drop(Loot.Heart);
+
+    Destroy(gameObject);
+  }
+
+  // Drop an item in a random place behind the shooter.
+  void Drop(Loot typeOfDrop){
+    float offset = Random.Range(0, 0.5f);
+    offset *= (!_lookingRight) ? -1 : 1;
     Vector3 dropPosition = transform.position;
     dropPosition.x += offset;
-    Instantiate(_coin, dropPosition, Quaternion.identity);
-    Destroy(gameObject);
+    switch(typeOfDrop){
+      case Loot.Coin:
+        Instantiate(_coin, dropPosition, Quaternion.identity);
+        break;
+
+      case Loot.Heart:
+        // To randomise the drop of heart.
+        if(Random.Range(0f, 1f) < 0.5f){
+          Instantiate(_heart, dropPosition, Quaternion.identity);
+        }
+        break;
+    }
+    
   }
 
   // Attack the target.
@@ -111,12 +134,13 @@ public class Shooter : Character {
   float _bulletTimer;
   bool _activated;
   bool _lookingRight;
+  Transform _target;
 
   public GameObject _bullet;
-  public Transform _target;
   public Transform _shootPointRight;
   public Transform _shootPointLeft;
   public GameObject _coin;
   public AudioClip _attackSound;
+  public GameObject _heart;
 
 }

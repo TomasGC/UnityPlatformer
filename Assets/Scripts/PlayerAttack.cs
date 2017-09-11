@@ -9,7 +9,7 @@ public class PlayerAttack : MonoBehaviour {
     _isAttacking = false;
     _timerAttack = 0f;
     _attackCoolDown = 0.3f;
-    _audioSource = GetComponent<AudioSource>();
+    _audioSource = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSource>();
   }
 
   // Update is called once per frame.
