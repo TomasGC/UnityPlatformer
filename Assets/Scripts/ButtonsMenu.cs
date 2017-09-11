@@ -47,7 +47,8 @@ public class ButtonsMenu : MonoBehaviour {
 
 
   // Attributes.
+  bool _paused;
+
   public GameObject _pauseUI;
-  private bool _paused;
 
 }

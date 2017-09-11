@@ -18,7 +18,7 @@ public class PlayerAttackTriggered : MonoBehaviour {
   }
 
   // Attributes.
-  private int _damages;
-  private Shooter _shooter;
+  int _damages;
+  Shooter _shooter;
 
 }

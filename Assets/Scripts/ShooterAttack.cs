@@ -27,7 +27,7 @@ public class ShooterAttack : MonoBehaviour {
   }
 
   // Attributes.
-  private Shooter _shooter;
-  private bool _isRight;
+  Shooter _shooter;
+  bool _isRight;
 
 }

@@ -26,6 +26,7 @@ public class GameMaster : MonoBehaviour {
   }
 
   // Attributes.
-  private int _nbCoins;
+  int _nbCoins;
+
   public Text _textCoins;
 }

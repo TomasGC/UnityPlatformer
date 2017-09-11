@@ -55,4 +55,5 @@ public abstract class Character : MonoBehaviour {
 
   public AudioClip _hurtSound;
   public AudioClip _dieSound;
+
 }

@@ -26,6 +26,6 @@ public class GroundChecker : MonoBehaviour{
 
 
   // Attributes.
-  private Player _player;
+  Player _player;
 
 }

@@ -16,8 +16,9 @@ public class PlayerHpUI : MonoBehaviour {
 	}
 
   // Attributes.
+  Player _player;
+
   public Sprite[] _hpSprites;
   public Image _heartUI;
-  private Player _player;
 
 }

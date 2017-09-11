@@ -39,12 +39,13 @@ public class PlayerAttack : MonoBehaviour {
   }
 
   // Attributes.
-  private bool _isAttacking;
-  private float _timerAttack;
-  private float _attackCoolDown;
-  private Animator _animator;
-  private AudioSource _audioSource;
+  bool _isAttacking;
+  float _timerAttack;
+  float _attackCoolDown;
+  Animator _animator;
+  AudioSource _audioSource;
 
   public Collider2D _attackTriggered;
   public AudioClip _attackSound;
+
 }

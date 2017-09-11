@@ -31,12 +31,12 @@ public class CameraFollow : MonoBehaviour {
 
 
   // Attributes.
-  private GameObject _player;
-  private bool _bounds;
-  private Vector3 _minPosCamera;
-  private Vector3 _maxPosCamera;
-  private float _smoothTimeX;
-  private float _smoothTimeY;
-  private Vector2 _velocity;
+  GameObject _player;
+  bool _bounds;
+  Vector3 _minPosCamera;
+  Vector3 _maxPosCamera;
+  float _smoothTimeX;
+  float _smoothTimeY;
+  Vector2 _velocity;
 
 }

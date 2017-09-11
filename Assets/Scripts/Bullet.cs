@@ -18,6 +18,6 @@ public class Bullet : MonoBehaviour {
   }
 
   // Attributes.
-  private Player _player;
+  Player _player;
 
 }
