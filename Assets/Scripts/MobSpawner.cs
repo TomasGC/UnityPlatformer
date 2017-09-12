@@ -6,22 +6,24 @@ public class MobSpawner : MonoBehaviour {
 
   // Use this for initialization
   void Start(){
-    _currentNbMobs = 0;
-    _maxNbMob = 3;
+    _maxNbMob = 4;
     _spawnTime = 3f;
    
     // Call the Spawn function after a delay of the spawnTime and then continue to call after the same amount of time.
-    InvokeRepeating("Spawn", _spawnTime, _spawnTime);
+    InvokeRepeating("CheckIfCanSpawn", _spawnTime, _spawnTime);
   }
-	
-  void Spawn() {
-    if(_currentNbMobs <= _maxNbMob){
-      print(_currentNbMobs);
-      // If the player has no health left exit the function.
-      if(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().GetHP()<=0){
-        return;
-      }
+  void CheckIfCanSpawn(){
+    // If the player has no health left exit the function.
+    if(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().GetHP()<=0){
+      return;
+    }
+    GameObject[] getCountMob = GameObject.FindGameObjectsWithTag("Mob");
+    if(getCountMob.Length <= _maxNbMob){
+      Spawn();
+    }
 
+  }
+  void Spawn() {
       // Possible places to spawn.
       Vector3[] spawnPlaces = new[] {
         new Vector3(-14.5f, 1.92f, 0f),
@@ -37,15 +39,12 @@ public class MobSpawner : MonoBehaviour {
 
       // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
       Instantiate(_shooter, spawnPlaces[index], Quaternion.identity);
-      _currentNbMobs++;
-    }
   }
 
   // Attributes.
-  private int _currentNbMobs;
-  private int _maxNbMob;
-  private float _spawnTime;            // How long between each spawn.
+  private int _maxNbMob;    // Max number of mob instance.
+  private float _spawnTime; // How long between each spawn.
 
-  public GameObject _shooter;                // The enemy prefab to be spawned.
+  public GameObject _shooter; // The enemy prefab to be spawned.
 
 }
