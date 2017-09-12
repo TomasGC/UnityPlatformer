@@ -34,17 +34,19 @@ public class ButtonsMenu : MonoBehaviour {
   }
 
   // When we push the Pause button, this method will be triggered and pause the game.
-  public void Pause()
-  {
+  public void Pause(){
     _paused = !_paused;
   }
 
   // When we push the Replay button, this method will be triggered and replay the game.
-  public void Replay()
-  {
+  public void Replay(){
     SceneManager.LoadScene(0);
   }
 
+  // When we push the Quit button, this method will be triggered and quit the game.
+  public void Quit(){
+    Application.Quit();
+  }
 
   // Attributes.
   bool _paused;
