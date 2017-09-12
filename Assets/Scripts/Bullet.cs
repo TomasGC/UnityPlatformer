@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour {
 
   void OnTriggerEnter2D(Collider2D collider2D){
     if(collider2D.CompareTag("Player")){
-      collider2D.SendMessageUpwards("Damages", 1);
+      collider2D.SendMessageUpwards("Damages", _damages);
       Destroy(gameObject);
     }
   }
