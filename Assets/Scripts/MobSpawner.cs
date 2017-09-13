@@ -15,6 +15,7 @@ public class MobSpawner : MonoBehaviour {
   void CheckIfCanSpawn(){
     // If the player has no health left exit the function.
     if(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().GetHP()<=0){
+      // No needs to destroy all the mobs, as the game will reboot.
       return;
     }
     GameObject[] getCountMob = GameObject.FindGameObjectsWithTag("Mob");

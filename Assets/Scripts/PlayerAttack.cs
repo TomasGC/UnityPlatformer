@@ -14,22 +14,24 @@ public class PlayerAttack : MonoBehaviour {
 
   // Update is called once per frame.
   void Update(){
-    if(Input.GetButtonDown("Attack") && !_isAttacking){
-      _isAttacking = true;
-      _timerAttack = _attackCoolDown;
-      _attackTriggered.enabled = true;
-      _audioSource.PlayOneShot(_attackSound);
-    }
-
-    if(_isAttacking){
-      if(_timerAttack > 0){
-        _timerAttack -= Time.deltaTime;
-      } else{
-        _isAttacking = false;
-        _attackTriggered.enabled = false;
+    if(GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().GetHP()>0){
+      if(Input.GetButtonDown("Attack") && !_isAttacking){
+        _isAttacking = true;
+        _timerAttack = _attackCoolDown;
+        _attackTriggered.enabled = true;
+        _audioSource.PlayOneShot(_attackSound);
       }
+
+      if(_isAttacking){
+        if(_timerAttack>0){
+          _timerAttack -= Time.deltaTime;
+        } else{
+          _isAttacking = false;
+          _attackTriggered.enabled = false;
+        }
+      }
+      _animator.SetBool("Attacking", _isAttacking);
     }
-    _animator.SetBool("Attacking", _isAttacking);
   }
 
   void Awake(){
